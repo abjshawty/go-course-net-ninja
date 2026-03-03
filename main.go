@@ -18,9 +18,8 @@ import (
 	"strings"
 )
 
+// strongest holds the name of the strongest sorcerer, used in the curse function.
 var strongest string = "Satoru Gojo"
-
-// String formatter + Console interface
 /**
 * The main function is the one that will run when we launch this program
 * There can only be one per project
@@ -45,6 +44,8 @@ func main() {
 	interface_lesson()
 }
 
+// basics_lesson demonstrates Go variable declarations, data types (strings, integers, floats),
+// arrays, slices, and string formatting with the fmt package.
 func basics_lesson() {
 	/*
 	* As you already should know if you're here, variables are boxes containg values, essentially
@@ -116,6 +117,8 @@ func basics_lesson() {
 	fmt.Println(rangeOne, rangeTwo, rangeThree)
 }
 
+// strings_lesson demonstrates common string operations using the strings package,
+// including Contains, Count, Replace, ToUpper, ToLower, Split, and Repeat.
 func strings_lesson() {
 	greeting := "Hi! I am not Claude. But I can still code..."
 	fmt.Println(strings.Contains(greeting, "hi"))
@@ -128,6 +131,8 @@ func strings_lesson() {
 	fmt.Println(strings.Repeat(greeting, 3))
 }
 
+// slices_lesson demonstrates slice operations including sorting with sort.Ints
+// and searching with sort.SearchInts.
 func slices_lesson() {
 	ages := []int{21, 54, 30}
 	sort.Ints(ages)
@@ -138,6 +143,8 @@ func slices_lesson() {
 	fmt.Println(names)
 }
 
+// loops_lesson demonstrates different loop patterns in Go: traditional for loops,
+// while-style loops, range-based loops, and loop control with continue and break.
 func loops_lesson() {
 	/**
 	* Loops are pretty much the same as in Java
@@ -178,6 +185,8 @@ func loops_lesson() {
 	fmt.Println(names)
 }
 
+// booleans_lesson demonstrates boolean values, comparison operators,
+// conditional statements (if/else), and loop control flow with continue and break.
 func booleans_lesson() {
 	/**
 	* Bool
@@ -220,6 +229,8 @@ func booleans_lesson() {
 	}
 }
 
+// functions_lesson demonstrates function definitions, calling functions,
+// passing functions as parameters (higher-order functions), and return values.
 func functions_lesson() {
 	/**
 	* Functions are a repeatable block of code, that takes arguments and returns values
@@ -230,6 +241,8 @@ func functions_lesson() {
 	fmt.Println(circle_area(10))
 }
 
+// maps_lesson demonstrates map creation, access, iteration, and modification
+// using both string and integer keys.
 func maps_lesson() {
 	/**
 	* Maps allow us to store key - value pairs
@@ -260,6 +273,8 @@ func maps_lesson() {
 	fmt.Println(phonebook)
 }
 
+// pass_by_value_lesson demonstrates Go's pass-by-value semantics and the difference
+// between value types (strings, ints, arrays, structs) and reference types (slices, maps).
 func pass_by_value_lesson() {
 	/**
 	* Go (GoLang) is a "Pass by value" language
@@ -302,6 +317,8 @@ func pass_by_value_lesson() {
 	 */
 }
 
+// pointers_lesson demonstrates pointer creation with &, dereferencing with *,
+// and modifying values through pointers.
 func pointers_lesson() {
 	/**
 	 * As established previously, we saw that some data types serve as memory adress containers for values
@@ -320,6 +337,8 @@ func pointers_lesson() {
 	fmt.Println("Value at adress: ", *scorePointer)
 }
 
+// structs_lesson demonstrates struct definition and initialization using
+// a constructor function pattern.
 func structs_lesson() {
 	/**
 	* A struct can be defined as a blueprint to define a data model or data type
@@ -328,6 +347,8 @@ func structs_lesson() {
 	fmt.Println(mybill)
 }
 
+// receiver_functions_lesson demonstrates receiver functions (methods) that operate
+// on a copy of the struct.
 func receiver_functions_lesson() {
 	/**
 	* Probably the closest thing to a method.
@@ -337,6 +358,8 @@ func receiver_functions_lesson() {
 	fmt.Println(myBill.format())
 }
 
+// receiver_functions_with_pointers_lesson demonstrates pointer receivers that can
+// modify the original struct's state.
 func receiver_functions_with_pointers_lesson() {
 	var b bill = newBill("Doofenschmirz")
 	fmt.Println(b.format())
@@ -346,17 +369,22 @@ func receiver_functions_with_pointers_lesson() {
 	fmt.Println(b.format())
 }
 
+// user_input_lesson demonstrates reading user input from stdin using bufio.Reader
+// to create an interactive bill.
 func user_input_lesson() {
 	var b bill = createBill()
 	b.selfPrint()
 }
 
+// switch_lesson demonstrates switch statements for menu-driven program logic.
 func switch_lesson() {
 	var b bill = newBill("Mustang")
 	promptOptions(b)
 	b.selfPrint()
 }
 
+// interface_lesson demonstrates interfaces and polymorphism using shapes
+// that implement area() and circumf() methods.
 func interface_lesson() {
 	shapes := []shape{
 		square{length: 15.2},
@@ -372,20 +400,24 @@ func interface_lesson() {
 
 // Secondary Functions
 
+// greet prints a greeting message for the given name.
 func greet(name string) {
 	fmt.Printf("Hello %s, doing well?\n", name)
 }
 
+// cycle_names iterates over a slice of names and applies the given function to each.
 func cycle_names(names []string, f func(string)) {
 	for _, name := range names {
 		f(name)
 	}
 }
 
+// circle_area calculates and returns the area of a circle with the given radius.
 func circle_area(radius float64) float64 {
 	return math.Pi * radius * radius
 }
 
+// getInitials extracts and returns the first two initials from a space-separated name.
 func getInitials(name string) (string, string) {
 	words := strings.Split(name, " ")
 	initials := ""
@@ -395,23 +427,33 @@ func getInitials(name string) (string, string) {
 	return string(initials[0]), string(initials[1])
 }
 
+// update_name_fail demonstrates that modifying a string parameter does not affect
+// the original variable due to Go's pass-by-value semantics.
 func update_name_fail(name string) {
 	name = "Satoru Gojo"
 }
 
+// update_name_by_returning demonstrates updating a value by returning the new value
+// instead of modifying the parameter directly.
 func update_name_by_returning(name string) string {
 	name = "Ryomen Sukuna"
 	return name
 }
 
+// update_map demonstrates that maps can be modified through function parameters
+// because they are reference types.
 func update_map(mapObj map[string]string) {
 	mapObj["Satoru Gojo"] = "Limitless"
 }
 
+// update_score modifies the value at the given pointer address to demonstrate
+// how pointers enable mutation of external values.
 func update_score(p *int) {
 	*p = 60
 }
 
+// newBill is a constructor function that creates and returns a new bill
+// with the given name and default items.
 func newBill(name string) bill {
 	b := bill{
 		name:  name,
@@ -421,41 +463,52 @@ func newBill(name string) bill {
 	return b
 }
 
+// bill represents a customer bill with a name, itemized charges, and tip amount.
 type bill struct {
 	name  string
 	items map[string]float64
 	tip   float64
 }
 
+// shape defines the interface for geometric shapes that can calculate
+// their area and circumference.
 type shape interface {
 	area() float64
 	circumf() float64
 }
 
+// square represents a square shape with a given side length.
 type square struct {
 	length float64
 }
 
+// circle represents a circle shape with a given radius.
 type circle struct {
 	radius float64
 }
 
+// area calculates and returns the area of the square.
 func (s square) area() float64 {
 	return s.length * s.length
 }
 
+// circumf calculates and returns the perimeter of the square.
 func (s square) circumf() float64 {
 	return s.length * 4
 }
 
+// area calculates and returns the area of the circle.
 func (c circle) area() float64 {
 	return math.Pi * c.radius * c.radius
 }
 
+// circumf calculates and returns the circumference of the circle.
 func (c circle) circumf() float64 {
 	return 2 * math.Pi * c.radius
 }
 
+// format returns a formatted string representation of the bill,
+// including all items, total, and tip.
 func (b *bill) format() string {
 	var fs string = "Bill breakdown: \n"
 	var total float64 = 0
@@ -471,24 +524,31 @@ func (b *bill) format() string {
 	return fs
 }
 
+// updateTip sets the tip amount on the bill.
 func (b *bill) updateTip(tip float64) {
 	b.tip = tip
 }
 
+// addItem adds a new item with the given name and price to the bill.
 func (b *bill) addItem(name string, price float64) {
 	b.items[name] = price
 }
 
+// selfPrint prints the formatted bill to stdout.
 func (b bill) selfPrint() {
 	fmt.Println(b.format())
 }
 
+// getInput displays a prompt and reads a line of input from the reader,
+// returning the trimmed input string and any error.
 func getInput(prompt string, reader *bufio.Reader) (string, error) {
 	fmt.Print(prompt)
 	input, err := reader.ReadString('\n')
 	return strings.TrimSpace(input), err
 }
 
+// createBill interactively prompts the user for a bill name and creates
+// a new bill with that name.
 func createBill() bill {
 	reader := bufio.NewReader(os.Stdin)
 	name, _ := getInput("Create a new bill name: ", reader)
@@ -498,6 +558,7 @@ func createBill() bill {
 	return b
 }
 
+// saveBill writes the formatted bill to a file in the bills directory.
 func (b bill) saveBill() {
 	data := []byte(b.format())
 	err := os.WriteFile("bills/"+b.name+".txt", data, 0644)
@@ -506,6 +567,8 @@ func (b bill) saveBill() {
 	}
 }
 
+// promptOptions displays a menu and handles user input to add items,
+// save the bill, or add a tip using a switch statement.
 func promptOptions(b bill) {
 	reader := bufio.NewReader(os.Stdin)
 	opt, _ := getInput("Choose option (a -- Add Item, s -- Save bill, t -- Add tip)", reader)
@@ -540,6 +603,8 @@ func promptOptions(b bill) {
 	}
 }
 
+// printShapeInfo prints the area and circumference of any shape
+// that implements the shape interface.
 func printShapeInfo(s shape) {
 	fmt.Printf("Area of %T is; %0.2f \n", s, s.area())
 	fmt.Printf("Circumference of %T is: %0.2f \n", s, s.circumf())
